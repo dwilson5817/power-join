@@ -17,24 +17,20 @@
  *
  */
 
-package dev.dylanwilson.plugins;
+package dev.dylanwilson.plugins.config;
 
-import dev.dylanwilson.plugins.config.ConfigManager;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class PowerJoin extends JavaPlugin {
-    private ConfigManager configManager;
+public class ConfigManager {
+    private final JavaPlugin plugin;
 
-    @Override
-    public void onEnable() {
-        this.configManager = new ConfigManager(this);
+    public ConfigManager(JavaPlugin plugin) {
+        this.plugin = plugin;
 
-        this.getLogger().info(ChatColor.GREEN + this.getName() + " has been enabled!");
+        save();
     }
 
-    @Override
-    public void onDisable() {
-        this.getLogger().info(ChatColor.GREEN + this.getName() + " has been disabled!");
+    public void save() {
+        this.plugin.saveDefaultConfig();
     }
 }
