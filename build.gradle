@@ -4,9 +4,6 @@ plugins {
     id 'kr.entree.spigradle' version '2.3.3'
 }
 
-group 'dev.dylanwilson.plugins'
-version '1.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots' }
@@ -26,7 +23,7 @@ publishing {
     }
     repositories {
         maven {
-            url "${gitLabApiUrl}/packages/maven"
+            url "${publishUrl}/packages/maven"
             name "GitLab"
             credentials(HttpHeaderCredentials) {
                 name = 'Job-Token'
@@ -42,3 +39,5 @@ publishing {
 test {
     useJUnitPlatform()
 }
+
+apply from: 'version.gradle'

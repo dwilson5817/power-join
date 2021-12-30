@@ -22,7 +22,7 @@ before_script:
 stages:
   - build
   - test
-  - deploy
+  - publish
 
 build:
   stage: build
@@ -44,8 +44,8 @@ test:
       - build
       - .gradle
 
-deploy:
-  stage: deploy
+publish:
+  stage: publish
   script: gradle publish
   cache:
     key: "$CI_COMMIT_REF_NAME"
@@ -53,5 +53,3 @@ deploy:
     paths:
       - build
       - .gradle
-  only:
-    - main
